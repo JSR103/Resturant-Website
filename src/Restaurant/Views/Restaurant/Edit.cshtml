@@ -1,0 +1,32 @@
+﻿@model Restaurant.Models.Menu1
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewBag.Title = "Edit Menu1";
+    Layout = "_Layout";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+
+</head>
+<body>
+    <form asp-action="Edit" method="post">
+        <input type="hidden" asp-for="Menu1ID" name="Menu1ID" value="@ViewBag.Menu1ID" />
+        <div class="form-group">
+            <label asp-for="Description1">Description:</label>
+            <div><span asp-validation-for="Description1" class="text-danger"></span></div>
+            <textarea asp-for="Description1" class="form-control"></textarea>
+        </div>
+        <div class="form-group">
+            <label asp-for="Price1">Price:</label>
+            <div><span asp-validation-for="Price1" class="text-danger"></span></div>
+            <input asp-for="Price1" class="form-control" />
+        </div>
+        <div class="text-center">
+            <button class="btn btn-primary" type="submit">Save</button>
+            <a asp-action="Index" asp-controller="Admin" class="btn btn-default">Cancel</a>
+        </div>
+    </form>
+</body>
+</html>

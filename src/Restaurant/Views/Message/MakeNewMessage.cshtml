@@ -1,0 +1,32 @@
+﻿@model Restaurant.Models.Message
+@{
+    Layout = "_Layout";
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title> Make New Message</title>@* So Far The page works but no new messages are actually posted on the view page yet *@
+</head>
+<body>
+    <h1 >Create a New Message</h1>
+    <form role="form" asp-controller="Message" asp-action="MakeNewMessage" method="post">
+        <div class="form-group center-block" id="message_form">
+            <input asp-for="MessageID" type="hidden" />
+
+            <label asp-for="Subject">Subject:</label>
+            <div class="form-group">
+                <input asp-for="Subject" class="form-control" rows="3" /><br />
+                <span id="Error" asp-validation-for="Subject"></span>@*add this*@
+                </div>
+                <label asp-for="Body">Body:</label>
+                <div class="form-group">
+                    <textarea asp-for="Body" class="form-control" rows="3"></textarea><br />
+                    <span id="Error" asp-validation-for="Body"></span>@*add this*@
+                    </div>
+                    <button type="submit" class="btn btn-success">Post</button>
+                </div>
+    </form>
+
+</body>
+</html>

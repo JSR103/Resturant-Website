@@ -1,0 +1,16 @@
+﻿@{
+    Layout = "_Layout";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" asp-href-include="lib/bootstrap/dist/css/*.min.css" />
+    <title>Error</title>
+</head>
+<body>
+    @Html.ActionLink("Home", "Index", "Home")<br />
+    <h2 class="text-danger">Error.</h2>
+    <h3 class="text-danger">You do not have sufficient priviledges to access this page.</h3>
+</body>
+</html>

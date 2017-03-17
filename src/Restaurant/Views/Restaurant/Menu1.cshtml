@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Restaurant.Models.Menu1>
+@{
+    Layout = "_Layout";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Member List</title>
+</head>
+<body>
+    <div id="Page">
+        <h1> All Members</h1>
+    </div>
+    @foreach (var m in Model)
+    {
+
+
+        <div id="Page">
+            <br />
+            <h4>Food Name: @m.Name1</h4>
+            <br />
+            @m.Ingredients1
+            @m.Location
+            @m.Menu1ID
+            @m.NameOfRest1
+            @m.Price1
+            @m.Stars1
+            @m.TypeOfMeat
+            @m.Type1
+            
+            <br />
+            <br />
+            <form @*id="@m.Menu1ID"*@ asp-action="AddToCart"
+                  asp-controller="Cart" method="post">
+                <input type="hidden" asp-for="@m.Menu1ID" />
+                <input type="hidden" name="returnUrl"
+                       value="@ViewContext.HttpContext.Request.PathAndQuery()" />
+                <span class="lead">
+                    @m.Description1
+                    <button type="submit" class="btn btn-success btn-sm pull-right">
+                        Add To Cart
+                    </button>
+                </span>
+            </form>
+            <hr />
+        </div>
+    }
+    <div id="Page">
+        <span class="label label-danger">
+            @Html.ActionLink("All Messages", "Messages", "Message", null,
+               new { @style = "color:aliceblue;" })
+        </span>
+    </div>
+</body>
+</html>

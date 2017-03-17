@@ -1,0 +1,14 @@
+﻿@model Restaurant.Models.News
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "News";
+}
+<h2>@Model.Title</h2>
+<h6>Todays Date and Time: @ViewBag.Kaelin</h6>
+<h3>Release Date: @Model.ReleaseDate</h3>
+<ul>
+    @foreach (string a in Model.Writers)
+    {
+        <il>@a</il>
+    }
+</ul>

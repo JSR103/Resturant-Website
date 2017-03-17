@@ -1,0 +1,32 @@
+﻿@model Restaurant.Models.Message
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewBag.Title = "Edit Message";
+    Layout = "_Layout";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+
+</head>
+<body>
+    <form asp-action="Edit" method="post">
+        <input type="hidden" asp-for="MessageID" name="MessageID" value="@ViewBag.MessageID" />
+        <div class="form-group">
+            <label asp-for="Subject">Subject:</label>
+            <div><span asp-validation-for="Subject" class="text-danger"></span></div>
+            <textarea asp-for="Subject" class="form-control"></textarea>
+        </div>
+        <div class="form-group">
+            <label asp-for="Body">Body:</label>
+            <div><span asp-validation-for="Body" class="text-danger"></span></div>
+            <input asp-for="Body" class="form-control" />
+        </div>
+        <div class="text-center">
+            <button class="btn btn-primary" type="submit">Save</button>
+            <a asp-action="Index" asp-controller="Admin" class="btn btn-default">Cancel</a>
+        </div>
+    </form>
+</body>
+</html>

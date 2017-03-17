@@ -1,0 +1,74 @@
+﻿@model IEnumerable<Restaurant.Models.Message>
+@{ 
+    Layout = "_Layout";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Reviews</title>@* So Far The page works but no new messages are actually posted on the view page yet *@
+</head>
+<body>
+ 
+    <h2>Reviews For Tasty Thai Food</h2>
+    <br />
+    <span class="label label-success">
+        @Html.ActionLink("Create a Message", "MakeNewMessage", "Message", null, new { @style = "color:aliceblue;" })
+      </span>
+        <br />
+        @foreach (var a in Model)
+        {
+            <h4>From: @a.From.FirstName </h4>
+            <h6>
+                <span class="glyphicon glyphicon-time">@a.Date</span>
+
+                </h6>
+                <h5><span class="label label-primary"> @a.Subject </span></h5>
+                <p>Body: @a.Body </p>
+
+
+                <p><span class="badge">@a.NewMessage.Count()</span> Comments:</p><br>
+
+            foreach (var n in a.NewMessage)
+            {
+                
+                <h5><span class="label label-primary"> @n.Subject </span></h5>
+                <p> @n.Body <br /> </p>
+                 
+
+            }
+
+                    <span class="label label-danger">
+                        @Html.ActionLink("Add a New Message", "Forum", "NewMessage",
+                     new { subject = a.Subject, Id = a.MessageID, body = a.Body }, new { @style = "color:aliceblue;" })
+                    </span>
+
+                    <hr id="hr1">
+        }
+
+
+
+                    <span class="label label-danger">
+                        @Html.ActionLink("All Messages", "Messages", "Message", null,
+               new { @style = "color:aliceblue;" })
+                    </span>
+
+                    <span class="label label-danger">
+                        @Html.ActionLink("Show Answer Messages", "MessageBySubject", "Message", new { subject = "Answer" },
+               new { @style = "color:aliceblue;" })
+                    </span>
+
+                    <span class="label label-danger">
+                        @Html.ActionLink("Show C# Messages", "MessageBySubject", "Message", new { subject = "C#" },
+               new { @style = "color:aliceblue;" })
+                    </span>
+
+                    <span class="label label-danger">
+                        @Html.ActionLink("Show all Members", "Members", "Member", null, new { @style = "color:aliceblue;" })
+                    </span>
+
+
+</body>
+
+</html>

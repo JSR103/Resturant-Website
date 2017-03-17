@@ -1,0 +1,40 @@
+﻿@model Restaurant.Models.NMViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewBag.Title = "Comments";
+    Layout = "_Layout";
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Comments</title>
+</head>
+<body>
+    <h1>Commet</h1>
+    
+    <form role="form" asp-controller="NewMessage" asp-action="Forum" method="post">
+        <div asp-validation-summary="ModelOnly"></div>@*add this*@
+        <div class="form-group">
+            <input asp-for="MessageID" type="hidden" />
+        </div>
+            <label asp-for="newmes.Subject"></label>
+        <div class="form-group">
+            @*<input class="form-control" rows="3" required asp-for="newmes.Subject" />*@
+            <textarea asp-for="newmes.Subject" class="form-control" rows="3"></textarea><br />
+            <span id="Error" asp-validation-for="newmes.Subject"></span>@*add this*@
+        </div>
+            <label asp-for="newmes.Body"></label>
+        <div class="form-group">
+            @*<input class="form-control" rows="3" required asp-for="newmes.Body" />*@
+            <textarea asp-for="newmes.Body" class="form-control" rows="3"></textarea><br />
+            <span id="Error" asp-validation-for="newmes.Body"></span>@*add this*@
+        </div>
+
+            <button class="btn btn-success" type="submit">Post</button>
+     
+
+</form>
+</body>
+</html>

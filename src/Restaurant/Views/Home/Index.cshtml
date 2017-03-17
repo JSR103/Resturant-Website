@@ -1,0 +1,31 @@
+﻿@model Restaurant.Models.ViewModels.RegisterViewModel
+@{
+    ViewData["Title"] = "Home";
+    Layout = "_Layout";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+   
+</head>
+<body>
+    <div id="Page">
+        <h3>Food House</h3>
+        <h5><span class="glyphicon glyphicon-time"></span>@ViewBag.CurrentDate</h5>
+@if (Model.Authenticated)
+{
+        <div>
+            <p>Hello Welcome to the offical Food House</p>
+        </div>
+    <h3>Welcome @Model.FirstName<span> </span>@Model.LastName<span>!</span></h3>
+}
+else
+{
+    <p>Hello Welcome to the offical Food House</p> 
+    <p>Please  <a id="a1" class="btn btn-primary" asp-area="" asp-controller="Account" asp-action="Login">Login</a></p>
+}
+   </div>
+
+</body>
+</html>

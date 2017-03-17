@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Restaurant.Models.Member>
+@{
+    Layout = "_Layout";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Member List</title>
+</head>
+<body>
+    <div id="Page">
+        <h1> All Members</h1>
+    </div>
+        @foreach (var m in Model)
+        {
+           
+         
+               <div id="Page">
+                <br />
+                <h4>Member: @m.FirstName</h4>
+                <br />
+                <br />
+                <hr />
+              </div>
+        }
+    <div id="Page">
+        <span class="label label-danger">
+            @Html.ActionLink("All Messages", "Messages", "Message", null,
+               new { @style = "color:aliceblue;" })
+        </span>
+        </div>
+</body>
+</html>
