@@ -82,6 +82,28 @@ namespace Restaurant.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Orders",
+                columns: table => new
+                {
+                    OrderID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    City = table.Column<string>(nullable: false),
+                    Country = table.Column<string>(nullable: false),
+                    GiftWrap = table.Column<bool>(nullable: false),
+                    Line1 = table.Column<string>(nullable: false),
+                    Line2 = table.Column<string>(nullable: true),
+                    Line3 = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: false),
+                    Shipped = table.Column<bool>(nullable: false),
+                    State = table.Column<string>(nullable: false),
+                    Zip = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Orders", x => x.OrderID);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Messages",
                 columns: table => new
                 {
@@ -100,6 +122,33 @@ namespace Restaurant.Migrations
                         column: x => x.FromMemberID,
                         principalTable: "Members",
                         principalColumn: "MemberID",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CartLine",
+                columns: table => new
+                {
+                    CartLineID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    FoodMenu1ID = table.Column<int>(nullable: true),
+                    OrderID = table.Column<int>(nullable: true),
+                    Quantity = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CartLine", x => x.CartLineID);
+                    table.ForeignKey(
+                        name: "FK_CartLine_Menu1s_FoodMenu1ID",
+                        column: x => x.FoodMenu1ID,
+                        principalTable: "Menu1s",
+                        principalColumn: "Menu1ID",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_CartLine_Orders_OrderID",
+                        column: x => x.OrderID,
+                        principalTable: "Orders",
+                        principalColumn: "OrderID",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -125,6 +174,16 @@ namespace Restaurant.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_CartLine_FoodMenu1ID",
+                table: "CartLine",
+                column: "FoodMenu1ID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CartLine_OrderID",
+                table: "CartLine",
+                column: "OrderID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Messages_FromMemberID",
                 table: "Messages",
                 column: "FromMemberID");
@@ -138,13 +197,19 @@ namespace Restaurant.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Menu1s");
+                name: "CartLine");
 
             migrationBuilder.DropTable(
                 name: "Menu2s");
 
             migrationBuilder.DropTable(
                 name: "NewMessage");
+
+            migrationBuilder.DropTable(
+                name: "Menu1s");
+
+            migrationBuilder.DropTable(
+                name: "Orders");
 
             migrationBuilder.DropTable(
                 name: "Messages");

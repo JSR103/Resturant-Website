@@ -8,8 +8,8 @@ using Restaurant.Models;
 namespace Restaurant.Migrations.AppIdentityDb
 {
     [DbContext(typeof(AppIdentityDbContext))]
-    [Migration("20170316034446_First")]
-    partial class First
+    [Migration("20170317214912_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

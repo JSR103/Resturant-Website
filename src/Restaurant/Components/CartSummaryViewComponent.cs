@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Restaurant.Models;
 
-namespace SportsStore.Components {
+namespace Restaurant.Components {
 
     public class CartSummaryViewComponent : ViewComponent {
         private Cart cart;

@@ -8,7 +8,7 @@ using Restaurant.Models;
 namespace Restaurant.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20170316174638_Initial")]
+    [Migration("20170317214858_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -16,6 +16,26 @@ namespace Restaurant.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.0-rtm-21431")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("Restaurant.Models.CartLine", b =>
+                {
+                    b.Property<int>("CartLineID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int?>("FoodMenu1ID");
+
+                    b.Property<int?>("OrderID");
+
+                    b.Property<int>("Quantity");
+
+                    b.HasKey("CartLineID");
+
+                    b.HasIndex("FoodMenu1ID");
+
+                    b.HasIndex("OrderID");
+
+                    b.ToTable("CartLine");
+                });
 
             modelBuilder.Entity("Restaurant.Models.Member", b =>
                 {
@@ -162,6 +182,52 @@ namespace Restaurant.Migrations
                     b.HasIndex("MessageID");
 
                     b.ToTable("NewMessage");
+                });
+
+            modelBuilder.Entity("Restaurant.Models.Order", b =>
+                {
+                    b.Property<int>("OrderID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("City")
+                        .IsRequired();
+
+                    b.Property<string>("Country")
+                        .IsRequired();
+
+                    b.Property<bool>("GiftWrap");
+
+                    b.Property<string>("Line1")
+                        .IsRequired();
+
+                    b.Property<string>("Line2");
+
+                    b.Property<string>("Line3");
+
+                    b.Property<string>("Name")
+                        .IsRequired();
+
+                    b.Property<bool>("Shipped");
+
+                    b.Property<string>("State")
+                        .IsRequired();
+
+                    b.Property<string>("Zip");
+
+                    b.HasKey("OrderID");
+
+                    b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("Restaurant.Models.CartLine", b =>
+                {
+                    b.HasOne("Restaurant.Models.Menu1", "Food")
+                        .WithMany()
+                        .HasForeignKey("FoodMenu1ID");
+
+                    b.HasOne("Restaurant.Models.Order")
+                        .WithMany("Lines")
+                        .HasForeignKey("OrderID");
                 });
 
             modelBuilder.Entity("Restaurant.Models.Message", b =>

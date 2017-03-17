@@ -49,6 +49,7 @@ namespace Restaurant
             services.AddTransient<IMessageRepository, MessageRepository>();
             services.AddTransient<IMemberRepository, MemberRepository>();
             services.AddTransient<IRestaurantRepository, Menu1Repository>();
+            services.AddTransient<IOrderRepository, EFOrderRepository>();
 
             services.AddMvc();
             services.AddMemoryCache();

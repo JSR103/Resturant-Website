@@ -17,6 +17,8 @@ namespace Restaurant.Models
 
         public DbSet<Menu2> Menu2s { get; set; }
 
+        public DbSet<Order> Orders { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
